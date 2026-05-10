@@ -20,8 +20,8 @@ Ce projet a été réalisé en utilisant HTML, CSS et JavaScript afin de pratiqu
 
 
 ## Technologies utilisées
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
 
 
