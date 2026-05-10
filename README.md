@@ -24,6 +24,10 @@ Ce projet a été réalisé en utilisant HTML, CSS et JavaScript afin de pratiqu
 - CSS
 - JavaScript
 
+  ##  Maquette Figma
+Lien vers la maquette Figma :
+[https://www.figma.com/file/XXXXXXXX/Pinky-Recipes](https://www.figma.com/design/eYjgaah0jeABtVNMQ2xuuD/Untitled?node-id=0-1&t=hIMljmZKMdCYjq07-1)
+
 
 ##  Capture d’écran
 <img width="1114" height="462" alt="Sleekshot 2026-05-10 03-44-16" src="https://github.com/user-attachments/assets/8c154d03-f93f-4a35-bca4-c895075668a2" />
