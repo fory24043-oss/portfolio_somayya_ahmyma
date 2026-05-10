@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pinky Recipes 🍰</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background-image:url("image/background.jfif");
+  background-size:cover;
+  background-position:center;
+}
+
+
+#loginPage{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,0.4);
+}
+
+form{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  width:300px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:20px;
+  border:1px solid #ddd;
+}
+
+button{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:20px;
+  background:#ff5c7a;
+  color:white;
+  cursor:pointer;
+}
+
+.error{
+  color:red;
+  font-size:12px;
+}
+
+.title{
+  position:absolute;
+  top:30px;
+  left:30px;
+  font-size:28px;
+  color:white;
+}
+
+
+#recipesPage{
+  display:none;
+  padding:20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+
+#recipeDetail{
+  display:none;
+  padding:20px;
+  background:white;
+  margin:20px;
+  border-radius:10px;
+}
+
+#recipeImg{
+  width:400px;
+  height:400px;
+  object-fit:cover;
+  border-radius:10px;
+  display:block;
+  margin:auto;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loginPage">
+
+  <form onsubmit="return validateForm()">
+
+    <h3>Login</h3>
+
+    <input id="name" type="text" placeholder="Name">
+    <div id="nameError" class="error"></div>
+
+    <input id="code" type="password" placeholder="Code">
+    <div id="codeError" class="error"></div>
+
+    <button type="submit">Submit</button>
+
+  </form>
+
+</div>
+
+
+<div id="recipesPage">
+
+  <h2>All Recipes</h2>
+
+  <div class="grid">
+
+    <div class="card" onclick="showRecipe('cake1')">
+      <img src="image/11.jpeg">
+      <h3>Chocolate Cake</h3>
+    </div>
+
+    <div class="card" onclick="showRecipe('cake2')">
+      <img src="image/33.jpeg">
+      <h3>Strawberry Cake</h3>
+    </div>
+
+    <div class="card" onclick="showRecipe('cake3')">
+      <img src="image/55.jpeg">
+      <h3>Black Forest Cake</h3>
+    </div>
+
+    <div class="card" onclick="showRecipe('cake4')">
+      <img src="image/22.jpeg">
+      <h3>Lemon Cake</h3>
+    </div>
+
+    <div class="card" onclick="showRecipe('cake5')">
+      <img src="image/cake1.jpeg">
+      <h3>Red Velvet Cake</h3>
+    </div>
+
+    <div class="card" onclick="showRecipe('cake6')">
+      <img src="image/cake6.jpeg">
+      <h3>Pineapple Cake</h3>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="recipeDetail">
+
+  <button onclick="back()">⬅ Back</button>
+
+  <h2 id="title"></h2>
+  <p id="content"></p>
+  <img id="recipeImg">
+
+</div>
+
+<button id="cakeBtn">Cakes Ideas</button>
+
+<script>
+
+
+function validateForm(){
+
+  const name = document.getElementById("name").value.trim();
+  const code = document.getElementById("code").value.trim();
+
+  let valid = true;
+
+  document.getElementById("nameError").innerText = "";
+  document.getElementById("codeError").innerText = "";
+
+  if(name.length < 6){
+    document.getElementById("nameError").innerText = "Name must be at least 6 characters";
+    valid = false;
+  }
+
+  if(code.length < 3){
+    document.getElementById("codeError").innerText = "Code must be at least 3 characters";
+    valid = false;
+  }
+
+  if(valid){
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("recipesPage").style.display = "block";
+  }
+
+  return false;
+}
+
+
+function showRecipe(type){
+
+  const title = document.getElementById("title");
+  const content = document.getElementById("content");
+  const img = document.getElementById("recipeImg");
+
+  document.getElementById('recipesPage').style.display='none';
+  document.getElementById('recipeDetail').style.display='block';
+
+   if(type==='cake1'){
+    title.innerText='Chocolate Cake';
+    content.innerText='Chocolate cake is a rich and indulgent dessert that is prepared by first preheating the oven to 180 degrees Celsius and carefully preparing all the ingredients to ensure a smooth baking process the preparation begins by taking a large mixing bowl and combining two cups of all purpose flour with one and a half cups of sugar half a cup of unsweetened cocoa powder one teaspoon of baking powder one teaspoon of baking soda and a small pinch of salt all these dry ingredients are mixed thoroughly to ensure even distribution of the cocoa and leavening agents in another bowl two large eggs are cracked and whisked gently before adding one cup of milk half a cup of vegetable oil and one teaspoon of vanilla extract the wet ingredients are mixed until they become uniform and slightly creamy after that the wet mixture is gradually poured into the dry ingredients while stirring continuously using a whisk or an electric mixer on low speed until the batter becomes smooth and free of lumps to enhance the deep chocolate flavor half a cup of hot water or hot coffee is added slowly to the mixture which also helps create a softer texture the batter will appear slightly thin but this is completely normal and contributes to the moistness of the cake the baking pan is then greased with butter and lightly dusted with flour to prevent sticking before pouring the batter evenly into the pan the cake is placed in the oven and baked for approximately thirty to thirty five minutes during baking the cake rises beautifully and fills the kitchen with a rich chocolate aroma to check if the cake is done a toothpick is inserted into the center and if it comes out clean the cake is ready once baked the cake is removed from the oven and allowed to cool in the pan for about ten minutes before transferring it onto a wire rack to cool completely after cooling the cake can be sliced into layers if desired and decorated generously with chocolate ganache buttercream frosting or even melted chocolate it can also be topped with chocolate chips fruits or nuts for extra texture and flavor making it a perfect dessert for celebrations gatherings or simply enjoying a homemade sweet treat';
+   recipeImg.src="image/cake12.jpeg";
+  }
+
+  if(type==='cake2'){
+    title.innerText='Strawberry Cake';
+    content.innerText='Strawberry cake is a soft delicate and fruity dessert that is perfect for lovers of fresh flavors and is prepared by first preheating the oven to 180 degrees Celsius and preparing a smooth batter using carefully selected ingredients the process starts by taking two cups of flour and mixing it with one cup of sugar one teaspoon of baking powder and a pinch of salt in a large bowl ensuring that all dry ingredients are evenly combined in a separate bowl fresh strawberries are washed thoroughly and blended into a smooth puree which will give the cake its natural flavor and color two eggs are then cracked into another bowl and whisked before adding one cup of milk half a cup of vegetable oil one teaspoon of vanilla extract and the prepared strawberry puree the mixture is stirred until it becomes smooth and slightly thick the wet ingredients are then slowly added to the dry ingredients while mixing gently to avoid overworking the batter which could make the cake dense the mixture is blended until it becomes smooth creamy and free of lumps then poured into a greased cake pan and spread evenly the cake is baked in the oven for about thirty minutes during which it rises and develops a soft fluffy texture once baked it is removed and left to cool completely before decoration the cake can be topped with whipped cream fresh strawberry slices or a strawberry glaze that enhances its sweetness and visual appeal for an even richer result the cake can be cut into layers and filled with cream and strawberries between each layer creating a beautiful and delicious dessert that is perfect for birthdays special occasions or simply enjoying a light homemade cake';
+   recipeImg.src="image/cake2.jpeg";
+  }
+
+  if(type==='cake3'){
+    title.innerText='Black Forest Cake';
+    content.innerText='Black forest cake is a classic and elegant dessert known for its rich combination of chocolate whipped cream and cherries and is prepared through several detailed steps that result in a layered masterpiece the process begins by baking a chocolate sponge cake using flour sugar cocoa powder eggs milk oil and baking powder which are mixed together to form a smooth batter that is baked at 180 degrees Celsius until fully cooked and soft once the cake has cooled completely it is carefully sliced horizontally into two or three equal layers to prepare for assembly each layer is then lightly soaked with a sugar syrup often mixed with cherry juice or flavoring to add moisture and enhance the taste whipped cream is prepared by beating cold cream until it forms soft peaks and becomes light and airy cherries whether fresh or preserved are also prepared for layering the first layer of cake is placed on a serving plate and covered with a generous amount of whipped cream followed by a layer of cherries then another cake layer is placed on top and the process is repeated until all layers are assembled the entire cake is then covered with whipped cream on the top and sides and decorated beautifully with more cherries and chocolate shavings which are made by scraping a chocolate bar this cake is then refrigerated for a few hours to allow the flavors to blend and the cream to set properly resulting in a moist creamy and flavorful dessert that is often served during celebrations and special occasions and is appreciated for its balance of sweetness and freshness';
+   recipeImg.src="image/cake3.jpeg";
+  }
+
+  if(type==='cake4'){
+    title.innerText='Lemon Cake';
+    content.innerText='Lemon cake is a light refreshing and slightly tangy dessert that is perfect for those who enjoy citrus flavors and is prepared by first preheating the oven to 180 degrees Celsius and organizing all the ingredients for a smooth baking process in a large bowl two cups of flour are mixed with one cup of sugar one teaspoon of baking powder and a pinch of salt ensuring that all dry ingredients are evenly distributed in another bowl two eggs are beaten and combined with one cup of milk half a cup of vegetable oil one teaspoon of vanilla extract the juice of one fresh lemon and finely grated lemon zest which adds a strong natural aroma and flavor the wet ingredients are mixed until smooth and then gradually added to the dry mixture while stirring gently until a smooth batter is formed the batter is poured into a greased baking pan and baked for about thirty minutes until the cake becomes golden and fully cooked once baked it is left to cool completely before adding a lemon glaze made from powdered sugar mixed with lemon juice which is poured over the cake to create a shiny sweet and tangy topping this cake can also be decorated with thin lemon slices or a light dusting of powdered sugar making it a perfect dessert for tea time summer days or anyone who enjoys a balance between sweetness and acidity';
+   recipeImg.src="image/cake5.jpeg";
+  }
+
+  if(type==='cake5'){
+    title.innerText='Red Velvet Cake';
+    content.innerText='Red velvet cake is a soft smooth and visually striking dessert that is loved for its vibrant color and delicate texture and is prepared by carefully mixing both dry and wet ingredients to achieve the perfect consistency the process begins by combining two cups of flour with one cup of sugar one tablespoon of cocoa powder one teaspoon of baking powder and a pinch of salt in a bowl in another bowl two eggs are mixed with one cup of milk half a cup of vegetable oil one teaspoon of vanilla extract and red food coloring which gives the cake its signature appearance the wet ingredients are blended until smooth and then slowly added to the dry ingredients while mixing continuously until a smooth batter is obtained the batter is poured into a greased pan and baked at 180 degrees Celsius for about thirty to thirty five minutes until the cake is fully cooked once baked it is allowed to cool completely before being decorated with cream cheese frosting which is made by mixing cream cheese butter powdered sugar and vanilla extract until creamy and smooth the cake can be layered and filled with frosting between each layer and covered entirely for a rich and elegant finish making it a popular choice for celebrations and special events';
+   recipeImg.src="image/cake4.jpeg";
+  }
+
+  if(type==='cake6'){
+    title.innerText='Pineapple Cake';
+    content.innerText='Pineapple upside down cake is a delicious and visually appealing dessert that combines caramelized fruit with a soft cake base and is prepared by first creating a caramel layer by melting butter and sugar in a pan until it becomes golden and smooth this caramel is poured into the bottom of a baking pan and pineapple slices are arranged neatly on top along with cherries placed in the center of each slice to create an attractive design in another bowl a cake batter is prepared by mixing flour sugar eggs milk oil and baking powder until smooth and creamy the batter is then poured carefully over the pineapple layer ensuring it is evenly spread the cake is baked at 180 degrees Celsius for about thirty to thirty five minutes during which the caramel and pineapple cook together creating a rich flavor once baked the cake is removed from the oven and allowed to cool slightly before being flipped upside down onto a serving plate revealing the beautiful caramelized pineapple topping this cake is known for its moist texture sweet flavor and eye catching presentation making it a favorite dessert for gatherings and family meals';
+   recipeImg.src="image/cake6.jpeg";
+  }
+}
+
+
+function back(){
+  document.getElementById('recipeDetail').style.display='none';
+  document.getElementById('recipesPage').style.display='block';
+}
+
+document.getElementById("cakeBtn").addEventListener("click", ()=>{
+  window.open("https://www.google.com/search?q=cakes","_blank");
+});
+
+alert("Welcome to Pinky Recipes  by SOMAYYA AHMYMA 🍰");
+
+</script>
+
+</body>
+</html>
